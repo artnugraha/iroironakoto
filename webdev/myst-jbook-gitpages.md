@@ -1,12 +1,12 @@
 # Buku Daring berformat MyST/Jupyter Book
 
-Tutorial ini merangkum *workflow* lengkap untuk membuat buku online berbasis MyST/Jupyter Book, mengujinya secara lokal, mengatur tampilan dasar, lalu men-deploy-nya ke GitHub Pages. Contoh konkret yang digunakan adalah repository organisasi GitHub `BRIN-Q` dengan alamat target:
+Tutorial ini merangkum *workflow* lengkap untuk membuat buku daring (*online*) berbasis MyST/Jupyter Book, mengujinya secara lokal, mengatur tampilan dasar, lalu mengaktifkannya (*deployment*) di GitHub Pages. Contoh konkret yang digunakan di sini adalah repositori GitHub organisasi `BRIN-Q` dengan alamat target:
 
 ```text
 https://brin-q.github.io/qm/
 ```
 
-Repository GitHub yang harus dibuat adalah:
+Repositori GitHub yang harus dibuat adalah:
 
 ```text
 https://github.com/BRIN-Q/qm
@@ -16,7 +16,7 @@ Prinsip dasarnya adalah:
 
 ```text
 folder lokal qm
-→ repository GitHub BRIN-Q/qm
+→ repositori GitHub BRIN-Q/qm
 → GitHub Pages project site https://brin-q.github.io/qm/
 ```
 
@@ -24,13 +24,13 @@ folder lokal qm
 
 ## 1. Gambaran Sistem
 
-Buku online ini menggunakan:
+Buku *online* ini menggunakan:
 
 1. **MyST/Jupyter Book 2** untuk membuat buku online berbasis Markdown dan notebook.
-2. **MyST Markdown** untuk menulis bab, persamaan, gambar, cross-reference, dan admonition.
+2. **MyST Markdown** untuk menulis bab, persamaan, gambar, *cross-reference*, dan *highlight*.
 3. **Jupyter Notebook** untuk bagian komputasi, simulasi, plotting, atau eksperimen numerik.
 4. **GitHub Actions** untuk membangun HTML secara otomatis.
-5. **GitHub Pages** untuk mempublikasikan hasil HTML ke internet.
+5. **GitHub Pages** untuk memublikasikan hasil HTML ke internet.
 
 Contoh untuk proyek buku mekanika kuantum, format/struktur ini sangat sesuai karena buku dapat memuat:
 
@@ -50,7 +50,8 @@ Misalkan folder lokal bernama:
 qm/
 ```
 
-Struktur minimal yang direkomendasikan adalah:
+Struktur minimal yang direkomendasikan adalah semacam di bawah ini:
+
 
 ```text
 qm/
@@ -165,13 +166,13 @@ node --version
 npm --version
 ```
 
-Jika versi `npm` terlalu lama, gunakan Node.js LTS yang lebih baru, misalnya melalui NodeSource atau pengelola paket lain.
+Jika versi `npm` terlalu tua, gunakan Node.js LTS yang lebih baru, misalnya melalui NodeSource atau pengelola paket lain.
 
 ---
 
 ## 5. File Konfigurasi Utama `myst.yml`
 
-File `myst.yml` adalah pusat konfigurasi MyST/Jupyter Book 2. Contoh konfigurasi yang digunakan untuk situs `https://brin-q.github.io/qm/` adalah:
+File `myst.yml` adalah pusat konfigurasi MyST/Jupyter Book. Contoh konfigurasi yang digunakan untuk situs `https://brin-q.github.io/qm/` adalah:
 
 ```yaml
 version: 1
@@ -547,7 +548,7 @@ plt.show()
 
 ## 16. Menguji Buku Secara Lokal
 
-Untuk preview interaktif:
+Untuk *preview* interaktif:
 
 ```bash
 jupyter book start
@@ -625,25 +626,25 @@ _build_cache/
 .myst/
 ```
 
-Tujuannya agar file lokal, cache, virtual environment, dan hasil build tidak ikut masuk ke repository.
+Tujuannya agar file lokal, cache, virtual environment, dan hasil build tidak ikut masuk ke repositori.
 
 ---
 
-## 18. Membuat Repository GitHub
+## 18. Membuat Repositori GitHub
 
-Karena alamat yang diinginkan adalah:
+Alamat yang diinginkan adalah:
 
 ```text
 https://brin-q.github.io/qm/
 ```
 
-maka repository harus bernama:
+sehingga repositori harus bernama:
 
 ```text
 qm
 ```
 
-Buat repository di organisasi:
+Buat repositori di organisasi:
 
 ```text
 https://github.com/BRIN-Q
@@ -652,8 +653,8 @@ https://github.com/BRIN-Q
 Langkah di GitHub:
 
 1. Masuk ke organisasi `BRIN-Q`.
-2. Klik **New repository**.
-3. Isi nama repository:
+2. Klik **New repositori**.
+3. Isi nama repositori:
 
 ```text
 qm
@@ -661,9 +662,9 @@ qm
 
 4. Pilih public atau private sesuai kebutuhan.
 5. Jika ingin menghindari konflik push pertama, jangan centang README, `.gitignore`, atau license.
-6. Buat repository.
+6. Buat repositori.
 
-Repository akhirnya adalah:
+Repositori akhirnya adalah:
 
 ```text
 https://github.com/BRIN-Q/qm
@@ -712,7 +713,7 @@ failed to push some refs
 Updates were rejected because the remote contains work that you do not have locally
 ```
 
-penyebab umum adalah repository GitHub sudah memiliki README, license, atau commit awal.
+penyebab umum adalah repositori GitHub sudah memiliki README, license, atau commit awal.
 
 Solusi aman:
 
@@ -783,7 +784,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repositori
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -830,13 +831,13 @@ Penjelasan penting:
 
 - `runs-on: ubuntu-24.04` berarti job dijalankan di virtual machine Ubuntu milik GitHub, bukan di komputer lokal.
 - Walaupun komputer lokal menggunakan Debian, GitHub Actions tetap berjalan di environment GitHub.
-- `actions/checkout@v4` mengambil isi repository.
+- `actions/checkout@v4` mengambil isi repositori.
 - `actions/setup-node@v4` memasang Node.js.
 - `actions/setup-python@v5` memasang Python.
 - `pip install -r requirements.txt` memasang dependensi buku.
 - `BASE_URL=/qm jupyter book build --html` membangun situs dengan base path `/qm`.
 - `actions/upload-pages-artifact@v3` mengunggah hasil build HTML sebagai artifact Pages.
-- `actions/deploy-pages@v4` men-deploy artifact ke GitHub Pages.
+- `actions/deploy-pages@v4` mend-*deploy* (aktifkan) *artifact* ke GitHub Pages.
 
 Mengapa `BASE_URL=/qm` penting?
 
@@ -871,13 +872,13 @@ git commit -m "Add GitHub Pages deployment workflow"
 git push
 ```
 
-Setiap push ke branch `main` akan memicu build dan deployment otomatis.
+Setiap push ke branch `main` akan memicu *build* dan *deployment* otomatis.
 
 ---
 
 ## 23. Mengaktifkan GitHub Pages
 
-Masuk ke repository:
+Masuk ke repositori:
 
 ```text
 https://github.com/BRIN-Q/qm
@@ -895,11 +896,11 @@ Pada bagian **Build and deployment**, pilih:
 Source: GitHub Actions
 ```
 
-Jika opsi ini tidak terlihat, kemungkinan akun tidak memiliki permission admin untuk repository. Minta owner atau admin organisasi untuk mengaktifkannya.
+Jika opsi ini tidak terlihat, kemungkinan akun tidak memiliki permission admin untuk repositori. Minta owner atau admin organisasi untuk mengaktifkannya.
 
 ---
 
-## 24. Memeriksa Deployment
+## 24. Memeriksa *Deployment*
 
 Setelah push, buka tab:
 
@@ -943,7 +944,7 @@ penyebabnya biasanya GitHub Pages belum diaktifkan.
 
 Solusi:
 
-1. Buka repository GitHub.
+1. Buka repositori GitHub.
 2. Masuk ke `Settings → Pages`.
 3. Set `Source: GitHub Actions`.
 4. Simpan.
@@ -1033,11 +1034,11 @@ git commit -m "Update book content"
 git push
 ```
 
-GitHub Actions akan otomatis membangun dan men-deploy ulang situs.
+GitHub Actions akan otomatis membangun dan men-*deploy* ulang situs.
 
 ---
 
-## 28. Mengganti Nama Repository atau URL
+## 28. Mengganti Nama Repositori atau URL
 
 Jika suatu saat alamat berubah, misalnya dari:
 
@@ -1069,7 +1070,7 @@ Kedua, `BASE_URL` di `.github/workflows/deploy.yml`:
           BASE_URL=/mekanika-kuantum jupyter book build --html
 ```
 
-Repository GitHub juga harus bernama:
+Repositori GitHub juga harus bernama:
 
 ```text
 mekanika-kuantum
@@ -1129,7 +1130,7 @@ Sebelum deployment pertama:
 [ ] Ada figures/
 [ ] Ada .github/workflows/deploy.yml
 [ ] Build lokal berhasil dengan jupyter book build --html
-[ ] Repository GitHub BRIN-Q/qm sudah dibuat
+[ ] Repositori GitHub BRIN-Q/qm sudah dibuat
 [ ] Git remote sudah diset ke https://github.com/BRIN-Q/qm.git
 [ ] GitHub Pages source diset ke GitHub Actions
 [ ] Workflow memakai BASE_URL=/qm
@@ -1140,7 +1141,7 @@ Sebelum deployment pertama:
 
 ---
 
-## 31. Referensi Resmi
+## Referensi Resmi
 
 Beberapa halaman dokumentasi yang relevan:
 
@@ -1153,7 +1154,7 @@ Beberapa halaman dokumentasi yang relevan:
 
 ---
 
-## 32. Minimal Command Summary
+## Rangkuman Perintah Minimal
 
 Dari folder lokal `qm`:
 
@@ -1177,4 +1178,4 @@ git commit -m "Update book content"
 git push
 ```
 
-Deployment dilakukan otomatis oleh GitHub Actions setelah setiap push ke branch `main`.
+*Deployment* dilakukan otomatis oleh GitHub Actions setelah setiap push ke branch `main`.
