@@ -4,3 +4,6 @@ This repository documents my solutions to various technical challenges. Whenever
 
 ## Git/GitHub Tutorials
 - [Authentication](git/auth.md)
+
+## Web Development
+- [MyST/Jupyter Book](webdev/myst-jbook-gitpages.md)
