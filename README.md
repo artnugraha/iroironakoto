@@ -6,4 +6,5 @@ This repository documents my solutions to various technical challenges. Whenever
 - [Authentication](git/auth.md)
 
 ## Web Development
+- [Personal Academic Webpage](webdev/jekyll-academic-github-webpage.md)
 - [MyST/Jupyter Book](webdev/myst-jbook-gitpages.md)
